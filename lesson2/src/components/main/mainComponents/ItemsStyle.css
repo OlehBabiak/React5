@@ -1,0 +1,8 @@
+.img>img{
+    width: 300px;
+}
+
+.itemList{
+    display: inline-block;
+    text-align: center;
+}
