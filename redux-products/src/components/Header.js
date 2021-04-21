@@ -2,9 +2,9 @@ import React  from 'react'
 import {useSelector} from 'react-redux'
 
 const Header = () => {
-    const {headerWishListCounter, headerCartCounter, isButtonOnclick} = useSelector(store => store.counters)
+    const {headerWishListCounter, headerCartCounter} = useSelector(store => store.counters)
 
-    const totalCounter = headerWishListCounter+headerCartCounter
+    const totalCounter = headerWishListCounter.length + headerCartCounter.length
     const headerStyle = {
         width: "100%",
         background: "#fff",
@@ -28,8 +28,8 @@ const Header = () => {
     return (
         <header style={headerStyle}>
             <div style={headerInner}>
-                <h3>{'Wish list: '}{headerWishListCounter}</h3>
-                <h3>{'Cart: '}{headerCartCounter}</h3>
+                <h3>{'Wish list: '}{headerWishListCounter.length}</h3>
+                <h3>{'Cart: '}{headerCartCounter.length}</h3>
                 <h3>{'Total: '}{totalCounter}</h3>
             </div>
         </header>

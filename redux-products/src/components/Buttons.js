@@ -5,14 +5,17 @@ import {
     addToCard
 } from '../redux/action-creators'
 
-const Buttons = (isButtonOnclick) => {
+const Buttons = (id) => {
+    const {products} = useSelector(store => store.products)
 //style={{background: isButtonOnclick && 'darkred'}}
-    console.log('isButtonOnclick: ',isButtonOnclick)
+    console.log('id: ',id)
     const dispatch = useDispatch()
     return(
         <div className='productButtons'>
-            <button style={{background: isButtonOnclick && 'darkred'}} onClick={()=>dispatch(addToWishList())}>Add to wishList</button>
-            <button  onClick={()=>dispatch(addToCard())}>Add to Cart</button>
+            <button style={{
+                background: products.includes(id.name) && 'darkred'
+            }} onClick={()=>dispatch(addToWishList(id.name))}>Add to wishList</button>
+            <button onClick={()=>dispatch(addToCard(id.name))}>Add to Cart</button>
         </div>
     )
 }

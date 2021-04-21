@@ -12,7 +12,7 @@ const Products = () => {
     const dispatch = useDispatch()
   const {products, isLoading} = useSelector(store => store.products)
     console.log('products: ',products)
-    const {isButtonOnclick} = useSelector(store => store.counters)
+
 
 
     useEffect(()=>{
@@ -40,7 +40,7 @@ const Products = () => {
                     <h2>{'Description: '}{product.name}</h2>
                     <h3>{'Price: '}{product.price}{'$'}</h3>
                     <img style={{width: '100%'}} src={product.imgUrl} alt={'img'}/>
-                   <Buttons isButtonOnclick={isButtonOnclick} id={product.name}/>
+                   <Buttons id={product.name}/>
                     <hr/>
                 </div>
                 )

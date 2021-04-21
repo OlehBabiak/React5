@@ -10,8 +10,8 @@ import { v4 as uuidv4 } from 'uuid'
 
 const startProductsLoading = () => ({type: START_PRODUCTS_LOADING})
 const endProductsLoading = () => ({type: END_PRODUCTS_LOADING})
-const addToWishList = () => ({type: ADD_TO_WISHLIST})
-const addToCard = () => ({type: ADD_TO_CART})
+const addToWishList = (payload) => ({type: ADD_TO_WISHLIST, payload})
+const addToCard = (payload) => ({type: ADD_TO_CART, payload})
 const setProducts = (payload) => ({type: SET_PRODUCTS, payload})
 const loadProducts = () => async (dispatch) => {
     try {

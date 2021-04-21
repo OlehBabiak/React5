@@ -6,25 +6,23 @@ import {
 
 const initialState = {
 
-    headerWishListCounter: 0,
-    headerCartCounter: 0,
-    isButtonOnclick: false
+    headerWishListCounter: [],
+    headerCartCounter: [],
 }
 
 const reducer = (state = initialState, action) => {
+    console.log('state: ', state)
     switch (action.type) {
         case ADD_TO_WISHLIST: {
             return {
                 ...state,
-                headerWishListCounter: state.headerWishListCounter+1,
-                isButtonOnclick: true
+                headerWishListCounter: [...state.headerWishListCounter, action.payload],
             }
         }
         case ADD_TO_CART: {
             return {
                 ...state,
-                headerCartCounter: state.headerCartCounter+1,
-                isButtonOnclick: true
+                headerCartCounter: [...state.headerCartCounter, action.payload],
             }
         }
 
