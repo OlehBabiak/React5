@@ -13,7 +13,7 @@ const Products = () => {
   const {products, isLoading} = useSelector(store => store.products)
     console.log('products: ',products)
     const {isButtonOnclick} = useSelector(store => store.counters)
-    console.log('isButtonOnclick: ',isButtonOnclick)
+
 
     useEffect(()=>{
         dispatch(loadProducts())
