@@ -15,7 +15,9 @@ const Buttons = (id) => {
             <button style={{
                 background: products.includes(id.name) && 'darkred'
             }} onClick={()=>dispatch(addToWishList(id.name))}>Add to wishList</button>
-            <button onClick={()=>dispatch(addToCard(id.name))}>Add to Cart</button>
+            <button style={{
+                background: products.includes(id.name) && 'darkred'
+            }} onClick={()=>dispatch(addToCard(id.name))}>Add to Cart</button>
         </div>
     )
 }
