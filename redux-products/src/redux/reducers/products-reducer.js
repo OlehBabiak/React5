@@ -7,7 +7,6 @@ import {
 
 const initialState = {
     products: [],
-    isLoading: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -15,22 +14,20 @@ const reducer = (state = initialState, action) => {
         case START_PRODUCTS_LOADING: {
             return {
                 ...state,
-                isLoading: true
             }
         }
         case END_PRODUCTS_LOADING: {
             return {
                 ...state,
-                isLoading: false
             }
         }
         case SET_PRODUCTS: {
             return {
                 ...state,
                 products: action.payload,
-                // isLoading: false
             }
         }
+
 
         default:
             return state

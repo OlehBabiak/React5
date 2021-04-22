@@ -4,6 +4,8 @@ import {
     addToCard,
     addToWishList,
     loadProducts,
+    RemoveWishList,
+    RemoveCard
 } from '../redux/action-creators'
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -19,7 +21,6 @@ const Products = () => {
 
     useEffect(()=>{
         dispatch(loadProducts())
-        console.log('products: ',products)
     }, [])
 
     return (
@@ -50,6 +51,8 @@ const Products = () => {
                 id={product.name}
                 onClickAddToWish = {()=>dispatch(addToWishList(product.name))}
                 onClickAddToCart = {()=>dispatch(addToCard(product.name))}
+                RemoveWish = {()=>dispatch(RemoveWishList(product.name))}
+                RemoveCart = {()=>dispatch(RemoveCard(product.name))}
                 />
                     <hr/>
                 </div>

@@ -1,6 +1,8 @@
 import {
     ADD_TO_WISHLIST,
-    ADD_TO_CART
+    ADD_TO_CART,
+    REMOVE_WISHLIST,
+    REMOVE_CART
 
 } from '../action-types/index'
 
@@ -23,6 +25,18 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 headerCartCounter: [...state.headerCartCounter, action.payload],
+            }
+        }
+        case REMOVE_WISHLIST: {
+            return {
+                ...state,
+                headerWishListCounter: [state.headerWishListCounter.filter(el => el !== action.payload)],
+            }
+        }
+        case REMOVE_CART: {
+            return {
+                ...state,
+                headerCartCounter: [state.headerCartCounter.filter(el => el !== action.payload)],
             }
         }
 

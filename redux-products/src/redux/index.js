@@ -9,4 +9,3 @@ export const store = createStore(
     applyMiddleware(...middlewares)
     // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
-console.log('Store: ', store)

@@ -1,10 +1,12 @@
-import React  from 'react'
+import React, {useEffect}  from 'react'
 import {useSelector} from 'react-redux'
 
 const Header = () => {
     const {headerWishListCounter, headerCartCounter} = useSelector(store => store.counters)
-
     const totalCounter = headerWishListCounter.length + headerCartCounter.length
+    console.log('counters: ', {headerWishListCounter, headerCartCounter})
+
+
     const headerStyle = {
         width: "100%",
         background: "#fff",
@@ -28,11 +30,7 @@ const Header = () => {
     justifyContent: 'space-between',
     padding: '0 15px',
     }
-    const headerFixed = {
-        position: 'fixed',
-        left: '0',
-        top: '0',
-    }
+
     return (
         <header style={headerStyle}>
             <div style={headerInner}>
