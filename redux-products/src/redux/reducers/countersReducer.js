@@ -30,7 +30,7 @@ const reducer = (state = initialState, action) => {
         case REMOVE_WISHLIST: {
             return {
                 ...state,
-                headerWishListCounter: [state.headerWishListCounter.filter(el => el === action.payload)],
+                headerWishListCounter: [state.headerWishListCounter.filter(el => el !== action.payload)],
             }
         }
         case REMOVE_CART: {
