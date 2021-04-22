@@ -5,7 +5,7 @@ import {
     ADD_TO_WISHLIST,
     ADD_TO_CART
 } from '../action-types/index'
-import { v4 as uuidv4 } from 'uuid'
+
 
 
 const startProductsLoading = () => ({type: START_PRODUCTS_LOADING})
@@ -18,7 +18,6 @@ const loadProducts = () => async (dispatch) => {
         dispatch(startProductsLoading())
         const resp = await fetch('https://my-json-server.typicode.com/jubs16/Products/Products');
         const json = await resp.json();
-        console.log('json: ',json)
         dispatch(setProducts(json))
 
     }catch (e) {

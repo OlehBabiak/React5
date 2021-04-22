@@ -1,6 +1,8 @@
 import React, {useEffect}  from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {
+    addToCard,
+    addToWishList,
     loadProducts,
 } from '../redux/action-creators'
 import Loader from "react-loader-spinner";
@@ -11,12 +13,13 @@ import Buttons from "./Buttons";
 const Products = () => {
     const dispatch = useDispatch()
   const {products, isLoading} = useSelector(store => store.products)
-    console.log('products: ',products)
+
 
 
 
     useEffect(()=>{
         dispatch(loadProducts())
+        console.log('products: ',products)
     }, [])
 
     return (
@@ -33,14 +36,21 @@ const Products = () => {
             }
 
             {!isLoading && products.map(product => (
-                <div key={product.name} style={{
+
+                <div key={product.name}
+                     style={{
                     width: '70%',
                     margin: '10px auto'
                 }}>
                     <h2>{'Description: '}{product.name}</h2>
                     <h3>{'Price: '}{product.price}{'$'}</h3>
                     <img style={{width: '100%'}} src={product.imgUrl} alt={'img'}/>
-                   <Buttons id={product.name}/>
+                   <Buttons
+                product={product}
+                id={product.name}
+                onClickAddToWish = {()=>dispatch(addToWishList(product.name))}
+                onClickAddToCart = {()=>dispatch(addToCard(product.name))}
+                />
                     <hr/>
                 </div>
                 )

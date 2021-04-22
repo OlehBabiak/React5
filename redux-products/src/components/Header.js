@@ -12,6 +12,9 @@ const Header = () => {
         zIndex: "100",
         WebkitBoxShadow: '0 5px 25px rgba(0, 0, 0, 0.15)',
         boxShadow: '0 5px 25px rgba(0, 0, 0, 0.15)',
+        position: 'fixed',
+        left: '0',
+        top: '0',
     }
     const headerInner = {
         width: '100%',
@@ -24,6 +27,11 @@ const Header = () => {
     msFlexPack: 'justify',
     justifyContent: 'space-between',
     padding: '0 15px',
+    }
+    const headerFixed = {
+        position: 'fixed',
+        left: '0',
+        top: '0',
     }
     return (
         <header style={headerStyle}>
