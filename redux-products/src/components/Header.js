@@ -1,11 +1,9 @@
-import React, {useEffect}  from 'react'
+import React  from 'react'
 import {useSelector} from 'react-redux'
 
 const Header = () => {
-    const {headerWishListCounter, headerCartCounter} = useSelector(store => store.counters)
+    const {headerWishListCounter, headerCartCounter, wishListSumm, cartSumm} = useSelector(store => store.counters)
     const totalCounter = headerWishListCounter.length + headerCartCounter.length
-    console.log('counters: ', {headerWishListCounter, headerCartCounter})
-
 
     const headerStyle = {
         width: "100%",
@@ -34,9 +32,9 @@ const Header = () => {
     return (
         <header style={headerStyle}>
             <div style={headerInner}>
-                <h3>{'Wish list: '}{headerWishListCounter.length}</h3>
-                <h3>{'Cart: '}{headerCartCounter.length}</h3>
-                <h3>{'Total: '}{totalCounter}</h3>
+                <h3>{`Wish list: ${headerWishListCounter.length} ($${wishListSumm})`}</h3>
+                <h3>{`Cart: ${headerCartCounter.length} ($${cartSumm})`}</h3>
+                <h3>{`Total: ${totalCounter}`}</h3>
             </div>
         </header>
     )

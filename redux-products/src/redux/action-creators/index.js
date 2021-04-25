@@ -5,7 +5,11 @@ import {
     ADD_TO_WISHLIST,
     ADD_TO_CART,
     REMOVE_WISHLIST,
-    REMOVE_CART
+    REMOVE_CART,
+    SUMM_WISHLIST,
+    MINUS_SUMM_WISHLIST,
+    SUMM_CART,
+    MINUS_SUMM_CART
 } from '../action-types/index'
 
 
@@ -30,6 +34,10 @@ const addToWishList = (payload) => ({type: ADD_TO_WISHLIST, payload})
 const addToCard = (payload) => ({type: ADD_TO_CART, payload})
 const RemoveWishList = (payload) => ({type: REMOVE_WISHLIST, payload})
 const RemoveCard = (payload) => ({type: REMOVE_CART, payload})
+const sumWishList = (payload) => ({type: SUMM_WISHLIST, payload})
+const minusSumWishList = (payload) => ({type: MINUS_SUMM_WISHLIST, payload})
+const sumCart = (payload) => ({type: SUMM_CART, payload})
+const minusSumCart = (payload) => ({type: MINUS_SUMM_CART, payload})
 
 export {
     startProductsLoading,
@@ -39,5 +47,9 @@ export {
     addToWishList,
     addToCard,
     RemoveWishList,
-    RemoveCard
+    RemoveCard,
+    sumWishList,
+    minusSumWishList,
+    sumCart,
+    minusSumCart
 }

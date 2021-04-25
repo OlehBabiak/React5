@@ -5,17 +5,21 @@ import {
     addToWishList,
     loadProducts,
     RemoveWishList,
-    RemoveCard
-} from '../redux/action-creators'
+    RemoveCard,
+    sumWishList,
+    minusSumWishList,
+    sumCart,
+    minusSumCart
+} from '../redux/action-creators';
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Buttons from "./Buttons";
 
 
+
 const Products = () => {
     const dispatch = useDispatch()
   const {products, isLoading} = useSelector(store => store.products)
-
 
 
 
@@ -41,7 +45,7 @@ const Products = () => {
                 <div key={product.name}
                      style={{
                     width: '70%',
-                    margin: '10px auto'
+                    margin: '100px auto'
                 }}>
                     <h2>{'Description: '}{product.name}</h2>
                     <h3>{'Price: '}{product.price}{'$'}</h3>
@@ -53,6 +57,10 @@ const Products = () => {
                 onClickAddToCart = {()=>dispatch(addToCard(product.name))}
                 RemoveWish = {()=>dispatch(RemoveWishList(product.name))}
                 RemoveCart = {()=>dispatch(RemoveCard(product.name))}
+                sumWishList = {()=>dispatch(sumWishList(product.price))}
+                minusSumWishList = {()=>dispatch(minusSumWishList(product.price))}
+                sumCart={()=>dispatch(sumCart(product.price))}
+                minusSumCart={()=>dispatch(minusSumCart(product.price))}
                 />
                     <hr/>
                 </div>

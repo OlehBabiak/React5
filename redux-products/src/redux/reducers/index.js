@@ -8,3 +8,4 @@ export const reducer = combineReducers({
     products: productReducer,
     counters: productsCounterReducer
 })
+console.log('reducer: ', reducer.products)
