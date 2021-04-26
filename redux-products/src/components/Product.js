@@ -8,11 +8,12 @@ import OneProd from "./OneProd";
 
 const Products = () => {
     const dispatch = useDispatch();
-    const {products, isLoading} = useSelector(store => store.products);
+    const {products, isLoading, error} = useSelector(store => store.products);
 
     useEffect(() => {
         dispatch(loadProducts());
     }, [dispatch]);
+    console.log(error);
 
     return (
         <div>
@@ -27,13 +28,16 @@ const Products = () => {
             />
             }
 
-            {!isLoading && products.map(product =>
+            {!isLoading && !error.bool && products.map(product =>
                 <OneProd
                     product={product}
                     id={product.name}
                     key={product.name}
                 />
             )}
+            {
+                error && alert(error.msg)
+            }
         </div>
     )
 }
