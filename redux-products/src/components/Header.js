@@ -1,8 +1,10 @@
-import React  from 'react'
+import React from 'react'
 import {useSelector} from 'react-redux'
+
 
 const Header = () => {
     const {headerWishListCounter, headerCartCounter, wishListSumm, cartSumm} = useSelector(store => store.counters)
+
     const totalCounter = headerWishListCounter.length + headerCartCounter.length
 
     const headerStyle = {
@@ -19,14 +21,14 @@ const Header = () => {
     const headerInner = {
         width: '100%',
         maxWidth: '1200px',
-    margin: '0 auto',
-    display: '-webkit-box',
-    msFlexWrap: 'wrap',
-    flexWrap: 'wrap',
+        margin: '0 auto',
+        display: '-webkit-box',
+        msFlexWrap: 'wrap',
+        flexWrap: 'wrap',
         WebkitBoxPack: 'justify',
-    msFlexPack: 'justify',
-    justifyContent: 'space-between',
-    padding: '0 15px',
+        msFlexPack: 'justify',
+        justifyContent: 'space-between',
+        padding: '0 15px',
     }
 
     return (
@@ -40,4 +42,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Header;
