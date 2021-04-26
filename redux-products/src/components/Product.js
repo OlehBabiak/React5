@@ -12,7 +12,7 @@ const Products = () => {
 
     useEffect(() => {
         dispatch(loadProducts());
-    }, []);
+    }, [dispatch]);
 
     return (
         <div>
@@ -31,10 +31,11 @@ const Products = () => {
                 <OneProd
                     product={product}
                     id={product.name}
+                    key={product.name}
                 />
             )}
-            <hr/>
         </div>
     )
 }
+
 export default Products;

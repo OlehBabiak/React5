@@ -1,8 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-    addToCard, addToWishList, minusSumCart, minusSumWishList, RemoveCard, RemoveWishList, sumCart, sumWishList
-} from "../redux/action-creators";
+import {addToCard, addToWishList, RemoveCard, RemoveWishList} from "../redux/action-creators";
 
 
 const OneProd = ({product, id}) => {
@@ -23,35 +21,22 @@ const OneProd = ({product, id}) => {
                 <button style={{
                     background: headerWishListCounter.includes(id) && 'darkred'
                 }} onClick={
-                    !headerWishListCounter.includes(id) ?
-                        () => {
-                            dispatch(addToWishList(product.name));
-                            dispatch(sumWishList(product.price));
-                        }
-                        :
-                        () => {
-                            dispatch(RemoveWishList(product.name));
-                            dispatch(minusSumWishList(product.price));
-                        }
+                    !headerWishListCounter.includes(id)
+                        ? () => dispatch(addToWishList(product))
+                        : () => dispatch(RemoveWishList(product))
                 }>
                     {!headerWishListCounter.includes(id) ? 'Add to wishList' : 'Remove wishList'}
                 </button>
                 <button style={{
                     background: headerCartCounter.includes(id) && 'darkred'
                 }} onClick={
-                    !headerCartCounter.includes(id) ?
-                        () => {
-                            dispatch(addToCard(product.name));
-                            dispatch(sumCart(product.price));
-                        }
-                        :
-                        () => {
-                            dispatch(RemoveCard(product.name));
-                            dispatch(minusSumCart(product.price));
-                        }
+                    !headerCartCounter.includes(id)
+                        ? () => dispatch(addToCard(product))
+                        : () => dispatch(RemoveCard(product))
                 }>
                     {!headerCartCounter.includes(id) ? 'Add to Cart' : 'Remove Cart'}</button>
             </div>
+            <hr/>
         </div>
     )
 }

@@ -1,11 +1,11 @@
-import React from 'react'
-import {useSelector} from 'react-redux'
+import React from 'react';
+import {useSelector} from 'react-redux';
 
 
 const Header = () => {
-    const {headerWishListCounter, headerCartCounter, wishListSumm, cartSumm} = useSelector(store => store.counters)
+    const {headerWishListCounter, headerCartCounter, wishListSumm, cartSumm} = useSelector(store => store.counters);
 
-    const totalCounter = headerWishListCounter.length + headerCartCounter.length
+    const totalCounter = headerWishListCounter.length + headerCartCounter.length;
 
     const headerStyle = {
         width: "100%",
@@ -17,7 +17,7 @@ const Header = () => {
         position: 'fixed',
         left: '0',
         top: '0',
-    }
+    };
     const headerInner = {
         width: '100%',
         maxWidth: '1200px',
@@ -29,7 +29,7 @@ const Header = () => {
         msFlexPack: 'justify',
         justifyContent: 'space-between',
         padding: '0 15px',
-    }
+    };
 
     return (
         <header style={headerStyle}>
