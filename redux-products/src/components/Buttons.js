@@ -3,8 +3,8 @@ import {useSelector} from 'react-redux'
 
 
 const Buttons = (props) => {
-    const {headerWishListCounter, headerCartCounter} = useSelector(store => store.counters)
-
+    const {headerCartCounter} = useSelector(store => store.cart)
+    const {headerWishListCounter} = useSelector(store => store.wishlist)
     return(
         <div className='productButtons'>
             <button style={{
@@ -13,12 +13,11 @@ const Buttons = (props) => {
                 !headerWishListCounter.includes(props.id)?
                   ()=> {
                         props.onClickAddToWish();
-                        props.sumWishList()
                     }
                     :
                     ()=> {
                         props.RemoveWish();
-                        props.minusSumWishList()
+
                     }
                    }>
                 {!headerWishListCounter.includes(props.id)? 'Add to wishList' : 'Remove wishList'}
@@ -29,15 +28,14 @@ const Buttons = (props) => {
                 !headerCartCounter.includes(props.id)?
                     ()=> {
                         props.onClickAddToCart();
-                        props.sumCart()
                     }
                     :
                     ()=> {
                         props.RemoveCart();
-                        props.minusSumCart()
+
                     }
             }>
-            {!headerCartCounter.includes(props.id)? 'Add to Cart' : 'Remove Cart'}</button>
+            {!headerCartCounter.includes(props.id)? 'Add to Cart' : 'Remove from Cart'}</button>
         </div>
     )
 }

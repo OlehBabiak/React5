@@ -6,12 +6,11 @@ const TodoContextProvider = ({children}) =>{
 
     const [doneTodos, setDoneTodos] = useState([])
 
-
-
     const removeTodo = (id) => {
         setTodos(todos.filter(todo => todo.id !==id))
         setDoneTodos(doneTodos.filter(el => el !== id))
     }
+
     const doneTodoCounter = (todoId) => {
         const isTodoMarkedAsDone = doneTodos.includes(todoId)
         if(isTodoMarkedAsDone){

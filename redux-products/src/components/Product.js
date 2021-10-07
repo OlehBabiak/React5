@@ -6,10 +6,6 @@ import {
     loadProducts,
     RemoveWishList,
     RemoveCard,
-    sumWishList,
-    minusSumWishList,
-    sumCart,
-    minusSumCart
 } from '../redux/action-creators';
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -20,8 +16,6 @@ import Buttons from "./Buttons";
 const Products = () => {
     const dispatch = useDispatch()
   const {products, isLoading} = useSelector(store => store.products)
-
-
 
     useEffect(()=>{
         dispatch(loadProducts())
@@ -42,25 +36,22 @@ const Products = () => {
 
             {!isLoading && products.map(product => (
 
-                <div key={product.name}
+                <div key={product.title}
                      style={{
-                    width: '70%',
+                    width: '50%',
                     margin: '100px auto'
                 }}>
-                    <h2>{'Description: '}{product.name}</h2>
+                    <h1>{product.title}</h1>
+                    <h2>{product.description}</h2>
                     <h3>{'Price: '}{product.price}{'$'}</h3>
-                    <img style={{width: '100%'}} src={product.imgUrl} alt={'img'}/>
+                    <img style={{width: '50%'}} src={product.image} alt={'img'}/>
                    <Buttons
                 product={product}
-                id={product.name}
-                onClickAddToWish = {()=>dispatch(addToWishList(product.name))}
-                onClickAddToCart = {()=>dispatch(addToCard(product.name))}
-                RemoveWish = {()=>dispatch(RemoveWishList(product.name))}
-                RemoveCart = {()=>dispatch(RemoveCard(product.name))}
-                sumWishList = {()=>dispatch(sumWishList(product.price))}
-                minusSumWishList = {()=>dispatch(minusSumWishList(product.price))}
-                sumCart={()=>dispatch(sumCart(product.price))}
-                minusSumCart={()=>dispatch(minusSumCart(product.price))}
+                id={product.id}
+                onClickAddToWish = {()=>dispatch(addToWishList(product.id))}
+                onClickAddToCart = {()=>dispatch(addToCard(product.id))}
+                RemoveWish = {()=>dispatch(RemoveWishList(product.id))}
+                RemoveCart = {()=>dispatch(RemoveCard(product.id))}
                 />
                     <hr/>
                 </div>

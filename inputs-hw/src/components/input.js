@@ -18,7 +18,7 @@ onSubmit}) {
     onChange={({target: {value}}) => setEndpointsData(value)} 
     type="text" 
     name = "endpoint"
-    placeholder = "Enter endpoint name"
+    placeholder = "Enter endpoint name f.e. user"
     />  
     <br/>
     <br/>

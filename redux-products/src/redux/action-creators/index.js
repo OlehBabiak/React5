@@ -6,11 +6,7 @@ import {
     ADD_TO_CART,
     REMOVE_WISHLIST,
     REMOVE_CART,
-    SUMM_WISHLIST,
-    MINUS_SUMM_WISHLIST,
-    SUMM_CART,
-    MINUS_SUMM_CART
-} from '../action-types/index'
+} from '../action-types'
 
 
 
@@ -20,7 +16,7 @@ const setProducts = (payload) => ({type: SET_PRODUCTS, payload})
 const loadProducts = () => async (dispatch) => {
     try {
         dispatch(startProductsLoading())
-        const resp = await fetch('https://my-json-server.typicode.com/jubs16/Products/Products');
+        const resp = await fetch('https://fakestoreapi.com/products');
         const json = await resp.json();
         dispatch(setProducts(json))
 
@@ -34,10 +30,6 @@ const addToWishList = (payload) => ({type: ADD_TO_WISHLIST, payload})
 const addToCard = (payload) => ({type: ADD_TO_CART, payload})
 const RemoveWishList = (payload) => ({type: REMOVE_WISHLIST, payload})
 const RemoveCard = (payload) => ({type: REMOVE_CART, payload})
-const sumWishList = (payload) => ({type: SUMM_WISHLIST, payload})
-const minusSumWishList = (payload) => ({type: MINUS_SUMM_WISHLIST, payload})
-const sumCart = (payload) => ({type: SUMM_CART, payload})
-const minusSumCart = (payload) => ({type: MINUS_SUMM_CART, payload})
 
 export {
     startProductsLoading,
@@ -48,8 +40,4 @@ export {
     addToCard,
     RemoveWishList,
     RemoveCard,
-    sumWishList,
-    minusSumWishList,
-    sumCart,
-    minusSumCart
 }

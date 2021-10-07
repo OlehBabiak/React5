@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+  import React, {memo} from "react";
 
 
 const TodoItem = memo(({todo, index, removeTodo, isDoneToggle, doneTodoCounter}) => {
@@ -17,6 +17,7 @@ const onTodoDelete = () => {
 isDoneToggle(todo.id);
        doneTodoCounter(todo.id)
    }
+
     return (
         <div className='todoItem'>
             <div className={classes.join(' ')}>

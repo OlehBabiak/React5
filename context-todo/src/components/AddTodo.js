@@ -14,7 +14,9 @@ const AddTodo = () =>{
             complited: false
         }
     )
-    const onTodoChange = ({target: {name, value}}) => setTodoValues({...todoValues, [name]: value})
+    const onTodoChange = ({target: {name, value}}) =>
+        setTodoValues({...todoValues, [name]: value})
+
     const onCreate = () => {
         onTodoCreate({...todoValues, id:uuidv4()})
         setTodoValues(
