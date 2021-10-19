@@ -3,8 +3,8 @@ import {
     ADD_TO_CART,
 } from '../action-types/index'
 
-const initFromLS = localStorage.getItem('counters')
-const initialState = initFromLS? JSON.parse(initFromLS) : {
+const initFromLS = localStorage.getItem('cart')
+const initialState = initFromLS ? JSON.parse(initFromLS) : {
     headerCartCounter: [],
 }
 

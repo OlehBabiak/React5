@@ -1,18 +1,32 @@
 import './App.css';
-import Products from "./components/Product";
-import {Provider} from 'react-redux'
-import {store} from "./redux/";
-import Header from "./components/Header";
+import {Header, Products, ProductDetails} from './components/index'
+import {Switch, Route, Redirect, BrowserRouter as Router} from 'react-router-dom'
 
 
 function App() {
   return (
-    <div className="App">
-        <Provider store={store}>
-            <Header/>
-            <Products/>
-        </Provider>
-    </div>
+      <Router>
+          <div className="App">
+              <Header/>
+              <Switch>
+                  <Route path='/' exact>
+                      <Redirect to='/products'/>
+                  </Route>
+                  <Route path='/products' exact>
+                      <Products/>
+                  </Route>
+                  <Route path='/products/:id'>
+                      <ProductDetails/>
+                  </Route>
+                  <Route path='/cart'>
+                      <div>cart</div>
+                  </Route>
+                  <Route path='/wishlist'>
+                      <div>wishlist</div>
+                  </Route>
+              </Switch>
+          </div>
+      </Router>
   );
 }
 

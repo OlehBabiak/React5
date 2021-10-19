@@ -1,12 +1,15 @@
 import React, {useMemo} from 'react'
 import {useSelector} from 'react-redux'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
+import {useHistory} from "react-router-dom";
 
-const Header = () => {
+export const Header = () => {
     const {headerCartCounter} = useSelector(store => store.cart)
     const {headerWishListCounter} = useSelector(store => store.wishlist)
     const {products} = useSelector(store => store.products)
     const totalCounter = headerWishListCounter.length + headerCartCounter.length
-
+    const history = useHistory()
     const calculatedCartSum = useMemo(() => {
         return products
             .filter(el => headerCartCounter.includes(el.id))
@@ -21,7 +24,10 @@ const Header = () => {
 
     const headerStyle = {
         width: "100%",
-        background: "#fff",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        background: "#a59c9c",
         padding: "15px 0",
         zIndex: "100",
         WebkitBoxShadow: '0 5px 25px rgba(0, 0, 0, 0.15)',
@@ -31,28 +37,47 @@ const Header = () => {
         top: '0',
     }
 
-    const headerInner = {
-        width: '100%',
+    const siteName = {
+        padding: '0 20px'
+    }
+
+    const headerInner_wrapper = {
         maxWidth: '1200px',
-        margin: '0 auto',
-        display: '-webkit-box',
+        display: 'flex',
         msFlexWrap: 'wrap',
         flexWrap: 'wrap',
         WebkitBoxPack: 'justify',
         msFlexPack: 'justify',
-        justifyContent: 'space-between',
+        justifyContent: 'end',
         padding: '0 15px',
     }
 
+    const headerInner = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        margin: '0 10px',
+        fontSize: '30px'
+    }
+
+
     return (
         <header style={headerStyle}>
-            <div style={headerInner}>
-                <h3>{`Wish list: ${headerWishListCounter.length} ($${calculatedWishListSum})`}</h3>
-                <h3>{`Cart: ${headerCartCounter.length} ($${calculatedCartSum})`}</h3>
-                <h3>{`Total: ${totalCounter}`}</h3>
+            <div style={siteName}>
+                <h2 onClick={() => history.push('/')}>My site</h2>
+            </div>
+            <div style={headerInner_wrapper}>
+                <div style={headerInner}>
+                    <PlaylistAddCheckIcon sx={{ fontSize: 50 }}/>
+                    <div>{`${headerWishListCounter.length} ($${calculatedWishListSum})`}</div>
+                </div>
+                <div style={headerInner}>
+                    <ShoppingCartIcon sx={{ fontSize: 35 }}/>
+                    <div>{`${headerCartCounter.length} ($${calculatedCartSum})`}</div>
+                </div>
+                <div style={headerInner}>{`Total: ${totalCounter}`}</div>
             </div>
         </header>
     )
 }
 
-export default Header

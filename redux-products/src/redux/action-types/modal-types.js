@@ -1,0 +1,7 @@
+const GET_CATEGORY = 'GET_CATEGORY'
+const ADD_PRODUCT_ID = 'ADD_PRODUCT_ID'
+
+export {
+    GET_CATEGORY,
+    ADD_PRODUCT_ID
+}

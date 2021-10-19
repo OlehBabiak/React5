@@ -3,8 +3,8 @@ import {
     REMOVE_WISHLIST,
 } from '../action-types/index'
 
-const initFromLS = localStorage.getItem('counters')
-const initialState = initFromLS? JSON.parse(initFromLS) : {
+const initFromLS = localStorage.getItem('wishlist')
+const initialState = initFromLS ? JSON.parse(initFromLS) : {
     headerWishListCounter: [],
 }
 

@@ -2,8 +2,6 @@ import {
     START_PRODUCTS_LOADING,
     END_PRODUCTS_LOADING,
     SET_PRODUCTS,
-
-
 } from '../action-types/index'
 
 const initFromLS = localStorage.getItem('products')
@@ -11,7 +9,6 @@ const initialState = initFromLS? JSON.parse(initFromLS) : {
     products: [],
     isLoading: false,
 }
-
 const reducer = (state = initialState, action) => {
 
     switch (action.type) {
