@@ -2,22 +2,21 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import {FormHelperText, InputAdornment, MenuItem, Select} from "@mui/material";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 
-export default function AddProductInput({categories, titleChangeHandler,
-                                            priceChangeHandler,
-                                            descriptionChangeHandler,
-                                            imageChangeHandler,
-                                            categoryChangeHandler, itemInput, titleError}) {
 
+export default function ProductInput({categories, itemInput, titleError, onChange, onCreate,
+                                         handleClose}) {
     return (
         <Box
             component="form"
             sx={{
                 '& .MuiTextField-root': { m: 1, width: '25ch' },
             }}
-            noValidate
-            autoComplete="off"
+            // noValidate
+            // autoComplete="off"
         >
             <div>
                 <TextField
@@ -27,7 +26,8 @@ export default function AddProductInput({categories, titleChangeHandler,
                     id="outlined-helperText"
                     label="Title"
                     helperText={titleError || "Enter title"}
-                    onChange={titleChangeHandler}
+                    onChange={onChange}
+                    name='title'
                 />
                 <TextField
                     error={!!titleError}
@@ -37,10 +37,11 @@ export default function AddProductInput({categories, titleChangeHandler,
                     label="Price"
                     type="number"
                     helperText={titleError || "Enter price"}
-                    onChange={priceChangeHandler}
+                    onChange={onChange}
                     InputLabelProps={{
                         shrink: true,
                     }}
+                    name='price'
                 />
                 <TextField
                     error={!!titleError}
@@ -51,7 +52,8 @@ export default function AddProductInput({categories, titleChangeHandler,
                     multiline
                     rows={4}
                     helperText={titleError || "Enter description"}
-                    onChange={descriptionChangeHandler}
+                    onChange={onChange}
+                    name='description'
                 />
                 <TextField
                     error={!!titleError}
@@ -64,7 +66,8 @@ export default function AddProductInput({categories, titleChangeHandler,
                         startAdornment: <InputAdornment position="start">https://</InputAdornment>,
                     }}
                     helperText={titleError || "Enter image"}
-                    onChange={imageChangeHandler}
+                    onChange={onChange}
+                    name='image'
                 />
                     <Select
                         error={!!titleError}
@@ -74,7 +77,8 @@ export default function AddProductInput({categories, titleChangeHandler,
                         value={itemInput.category}
                         helperText={titleError || "Enter image"}
                         label="Category"
-                        onChange={categoryChangeHandler}
+                        onChange={onChange}
+                        name='category'
                     >
                         {categories.map(ctg =>
                             <MenuItem

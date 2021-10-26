@@ -3,12 +3,16 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import AddProductInput from "./inputs/AddProductInput";
+import ProductInput from "./inputs/ProductInput";
 import {
     uploadProducts,
     loadCategories,
+    handleItemChange,
+    clearInput,
+    openModal,
+    createInputError
 } from '../../redux/action-creators';
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 const style = {
@@ -25,17 +29,8 @@ const style = {
 
 export default function ModalNewProduct() {
     const dispatch = useDispatch()
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => {
-        setOpen(false)
-        setTitleError(null)
-    };
-    const addForm = () => {dispatch(uploadProducts(itemInput))}
-    const {categories} = useSelector(store => store.modals)
-    const [titleError, setTitleError] = useState(null);
-
-
+    const {categories, inputValue, modalOpen, inputError, newProductId} = useSelector(store => store.modals)
+    console.log('newProductId: ', newProductId)
     const defoltValue = {
         title: '',
         price: '',
@@ -44,44 +39,30 @@ export default function ModalNewProduct() {
         category: ''
     }
 
-    const [itemInput, setItemInput] = useState(defoltValue);
 
-    const handleItemChange = (name, value) =>{                                      //adding data from input
-        setItemInput({...itemInput, [name]: value})
-    }
 
-    const titleChangeHandler = (event) => {
-        handleItemChange('title', event.target.value)
-        setTitleError(null);
-    }
-    const priceChangeHandler = (event) => {
-        handleItemChange('price', event.target.value)
-        setTitleError(null);
-    }
-    const descriptionChangeHandler = (event) => {
-        handleItemChange('description', event.target.value)
-        setTitleError(null);
-    }
-    const imageChangeHandler = (event) => {
-        handleItemChange('image', event.target.value)
-        setTitleError(null);
-    }
-    const categoryChangeHandler = (event) => {
-        handleItemChange('category', event.target.value)
-        setTitleError(null);
+    const onChange = ({ target: { name, value } }) => {
+        dispatch(handleItemChange(name, value))
     }
 
+    const handleClose = () => {
+        dispatch(openModal(false))
+        dispatch(clearInput(defoltValue))
+        dispatch(createInputError(null))
+    };
+    const addForm = () => {dispatch(uploadProducts(inputValue))}
     const onCreate = () => {
-        if (itemInput.title.trim().length !== 0 &&
-            itemInput.price.trim().length !== 0 &&
-            itemInput.description.trim().length !== 0 &&
-            itemInput.image.trim().length !== 0 &&
-            itemInput.category.trim().length !== 0) {
+        if (inputValue.title.trim().length !== 0 &&
+            inputValue.price.trim().length !== 0 &&
+            inputValue.description.trim().length !== 0 &&
+            inputValue.image.trim().length !== 0 &&
+            inputValue.category.trim().length !== 0) {
             addForm()
-            setItemInput(defoltValue)
+            dispatch(clearInput(defoltValue))
             handleClose()
         } else {
-            setTitleError("Not valid value");
+            dispatch(createInputError("Not valid value"))
+
         }
     };
 
@@ -92,29 +73,23 @@ export default function ModalNewProduct() {
 
     return (
         <div>
-            <Button onClick={handleOpen}>Add new product</Button>
+            <Button onClick={() => dispatch(openModal(true))}>Add new product</Button>
             <Modal
-                open={open}
+                open={modalOpen}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        <AddProductInput
+                        <ProductInput
                             categories={categories}
-                            titleChangeHandler={titleChangeHandler}
-                            priceChangeHandler={priceChangeHandler}
-                            descriptionChangeHandler={descriptionChangeHandler}
-                            imageChangeHandler={imageChangeHandler}
-                            categoryChangeHandler={categoryChangeHandler}
-                            itemInput={itemInput}
-                            titleError={titleError}
+                            onChange={onChange}
+                            itemInput={inputValue}
+                            titleError={inputError}
+                            onCreate={onCreate}
+                            handleClose={handleClose}
                         />
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        <Button onClick={onCreate}>Add</Button>
-                        <Button onClick={handleClose}>Cancel</Button>
                     </Typography>
                 </Box>
             </Modal>

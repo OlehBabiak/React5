@@ -13,7 +13,9 @@ const qsHelper = (params) => {
         if (i !== keys.length - 1) result += '&'
     })
     return result
+
 }
+
 
 const startProductsLoading = () => ({type: START_PRODUCTS_LOADING})
 const endProductsLoading = () => ({type: END_PRODUCTS_LOADING})

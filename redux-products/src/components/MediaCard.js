@@ -7,8 +7,11 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import {useHistory} from "react-router-dom";
+import ModalEditProduct from "./Modal/ModalEditProduct";
+import ModalNewProduct from "./Modal/ModalNewProduct";
 
 export default function MediaCard(
+
     {
         product,
         isInCart,
@@ -66,7 +69,11 @@ export default function MediaCard(
                             toggleItemInCart();
                         }
                     }
-                    size="small">{!isInCart ? 'ADD TO CART' : 'REMOVE FROM CART'}</Button>
+                    size="small">{!isInCart ? 'ADD TO CART' : 'REMOVE FROM CART'}
+                </Button>
+                <ModalNewProduct
+                    id={product.id}
+                />
             </CardActions>
         </Card>
     );
