@@ -2,21 +2,15 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import {FormHelperText, InputAdornment, MenuItem, Select} from "@mui/material";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 
 
-
-export default function ProductInput({categories, itemInput, titleError, onChange, onCreate,
-                                         handleClose}) {
+export default function ProductInput({categories, itemInput, titleError, onChange}) {
     return (
         <Box
             component="form"
             sx={{
                 '& .MuiTextField-root': { m: 1, width: '25ch' },
             }}
-            // noValidate
-            // autoComplete="off"
         >
             <div>
                 <TextField

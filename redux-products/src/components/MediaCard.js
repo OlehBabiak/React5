@@ -71,7 +71,7 @@ export default function MediaCard(
                     }
                     size="small">{!isInCart ? 'ADD TO CART' : 'REMOVE FROM CART'}
                 </Button>
-                <ModalNewProduct
+                <ModalEditProduct
                     id={product.id}
                 />
             </CardActions>
